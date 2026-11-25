@@ -1,5 +1,4 @@
-// Placeholder product imagery (Unsplash source) — swap image URLs with your own
-// product photography before launch.
+// Fallback data, used only if the database is empty or unreachable.
 
 export const heroSlides = [
   {
@@ -57,10 +56,6 @@ export const categoryTiles = [
   { label: 'Spices', href: '/collections/spices', image: 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?q=80&w=1200&auto=format&fit=crop' },
 ]
 
-// Every product lives in this single list.
-// - category: which collection page(s) it shows up on (matches the nav/collection slugs)
-// - hasWeight: true = shows the "Weight" selector (loose nuts/seeds sold by weight)
-//              false = just shows Quantity (packaged items like chocolate bars, gift boxes)
 export const allProducts = [
   { id: 1, name: 'Salted Persian Pistachios', basePrice: 9, hasWeight: true, category: ['nuts-seeds-snacks', 'best-sellers'], image: 'https://images.unsplash.com/photo-1610137512859-aa919f651a05?q=80&w=800&auto=format&fit=crop', href: '/products/salted-persian-pistachios' },
   { id: 2, name: 'Pistachio Dubai Chocolate Bar', basePrice: 25, hasWeight: false, category: ['chocolates-sweets', 'best-sellers'], image: 'https://images.unsplash.com/photo-1606312619070-d48b4c652a52?q=80&w=800&auto=format&fit=crop', href: '/products/pistachio-dubai-chocolate-bar' },

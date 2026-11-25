@@ -30,7 +30,7 @@ function ScrollToTop() {
 export default function App() {
   const { pathname } = useLocation()
 
-  // The admin panel has its own full-screen layout (no shop header/footer)
+  // Admin uses its own layout
   if (pathname.startsWith('/admin')) {
     return (
       <Routes>

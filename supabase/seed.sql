@@ -1,5 +1,4 @@
--- Starter content for Golden Nuts House (run ONCE after schema.sql)
--- Placeholder photos: replace them from the admin panel with the client's real photos.
+-- Starter catalogue (run once, after schema.sql)
 
 insert into public.categories (slug, name, image_url, show_on_home, sort_order) values
   ('nuts-seeds-snacks', 'Nuts, Seeds & Snacks', 'https://images.unsplash.com/photo-1599599810769-bcde5a160d32?q=80&w=1200&auto=format&fit=crop', true, 0),

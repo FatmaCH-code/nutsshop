@@ -1,4 +1,4 @@
-/* ================= GOLDEN NUTS HOUSE — ADMIN ================= */
+/* Admin panel */
 .adm {
   --adm-bg: #F6F2EA;
   --adm-card: #FFFFFF;
@@ -14,7 +14,7 @@
   font-size: 14px;
 }
 
-/* ---- sidebar ---- */
+/* Sidebar */
 .adm-side {
   background: var(--color-ink);
   color: var(--color-shell);
@@ -46,7 +46,7 @@
 .adm-user small { color: var(--color-gold); text-transform: uppercase; letter-spacing: 0.12em; font-size: 10px; font-weight: 800; }
 .adm-logout { color: #F2B8B5; }
 
-/* ---- main ---- */
+/* Main */
 .adm-main { padding: 30px 36px 80px; min-width: 0; }
 .adm-topbar { display: none; }
 .adm-page-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; margin-bottom: 22px; flex-wrap: wrap; }
@@ -58,7 +58,7 @@ td.adm-empty { text-align: center; padding: 40px; }
 .adm-sub { display: block; color: var(--adm-muted); font-size: 12px; font-weight: 500; }
 s.adm-sub { display: block; }
 
-/* ---- buttons ---- */
+/* Buttons */
 .adm-btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 6px;
   padding: 9px 16px; border-radius: 6px; border: 1.5px solid var(--adm-line);
@@ -77,7 +77,7 @@ s.adm-sub { display: block; }
 .adm-link-strong { background: none; border: none; padding: 0; font-weight: 700; font-size: 14px; text-align: left; color: var(--adm-text); }
 .adm-link-strong:hover { color: var(--color-gold-deep); text-decoration: underline; }
 
-/* ---- stats / cards ---- */
+/* Stats / cards */
 .adm-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 14px; margin-bottom: 20px; }
 .adm-stat { background: var(--adm-card); border: 1px solid var(--adm-line); border-radius: 10px; padding: 18px; display: flex; flex-direction: column; gap: 6px; }
 .adm-stat span { color: var(--adm-muted); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; }
@@ -96,7 +96,7 @@ s.adm-sub { display: block; }
 .adm-mini-row { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 10px 0; border-top: 1px solid var(--adm-line); }
 .adm-quick > div { display: flex; gap: 10px; flex-wrap: wrap; }
 
-/* ---- status colors ---- */
+/* Status colors */
 .adm-status, .adm-status-select {
   font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .06em;
   padding: 4px 9px; border-radius: 20px; border: none;
@@ -109,7 +109,7 @@ s.adm-sub { display: block; }
 .s-completed { background: #ECECEC; color: #444; }
 .s-cancelled { background: #FBE2E1; color: #A3231B; }
 
-/* ---- toolbar / tabs ---- */
+/* Toolbar / tabs */
 .adm-toolbar { display: flex; gap: 10px; margin-bottom: 14px; flex-wrap: wrap; }
 .adm-toolbar input, .adm-toolbar select, .adm select:not(.adm-status-select), .adm-drawer select:not(.adm-status-select), .adm-form input, .adm-form textarea, .adm-field select, .adm-image-controls input[type="url"] {
   padding: 10px 12px; border: 1.5px solid var(--adm-line); border-radius: 6px;
@@ -125,7 +125,7 @@ s.adm-sub { display: block; }
 .adm-tabs button span { opacity: .55; margin-left: 4px; }
 .adm-tabs button.is-active { background: var(--color-ink); color: var(--color-gold); border-color: var(--color-ink); }
 
-/* ---- table ---- */
+/* Table */
 .adm-table-wrap { background: var(--adm-card); border: 1px solid var(--adm-line); border-radius: 10px; overflow-x: auto; }
 .adm-table { width: 100%; border-collapse: collapse; }
 .adm-table th { text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: var(--adm-muted); padding: 12px 14px; border-bottom: 1px solid var(--adm-line); background: #FBF8F2; white-space: nowrap; }
@@ -141,7 +141,7 @@ s.adm-sub { display: block; }
 .adm-row-actions { white-space: nowrap; text-align: right; }
 .adm-row-actions .adm-btn { margin-left: 4px; }
 
-/* ---- forms ---- */
+/* Forms */
 .adm-form { display: flex; flex-direction: column; gap: 16px; }
 .adm-field { display: flex; flex-direction: column; gap: 6px; }
 .adm-label { font-size: 12.5px; font-weight: 700; }
@@ -167,7 +167,7 @@ s.adm-sub { display: block; }
 .adm-image-preview.is-wide { width: 190px; height: 110px; }
 .adm-image-controls { flex: 1; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
 
-/* ---- drawer ---- */
+/* Drawer */
 .adm-drawer-backdrop { --adm-bg: #F6F2EA; --adm-card: #FFFFFF; --adm-line: #E7DFCF; --adm-text: #1E1A16; --adm-muted: #7A7064; color: var(--adm-text); font-size: 14px; position: fixed; inset: 0; background: rgba(20, 17, 15, .45); z-index: 500; display: flex; justify-content: flex-end; animation: admFade .15s ease; }
 .adm-drawer { width: min(620px, 100%); height: 100%; background: var(--adm-bg); display: flex; flex-direction: column; box-shadow: -20px 0 60px rgba(0,0,0,.25); animation: admSlide .2s ease; }
 .adm-drawer-head { display: flex; justify-content: space-between; align-items: center; padding: 18px 24px; border-bottom: 1px solid var(--adm-line); background: var(--adm-card); }
@@ -177,7 +177,7 @@ s.adm-sub { display: block; }
 @keyframes admFade { from { opacity: 0 } }
 @keyframes admSlide { from { transform: translateX(40px); opacity: 0 } }
 
-/* ---- orders drawer ---- */
+/* Orders drawer */
 .adm-order { display: flex; flex-direction: column; gap: 16px; }
 .adm-order .adm-card { margin: 0; }
 .adm-order a { color: var(--color-gold-deep); font-weight: 600; }
@@ -185,7 +185,7 @@ s.adm-sub { display: block; }
 .adm-order-line { display: grid; grid-template-columns: 48px 1fr auto; gap: 12px; align-items: center; padding: 8px 0; border-top: 1px solid var(--adm-line); }
 .adm-order-total { display: flex; justify-content: space-between; padding-top: 12px; border-top: 2px solid var(--adm-text); font-size: 16px; }
 
-/* ---- categories tiles ---- */
+/* Categories tiles */
 .adm-cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 14px; }
 .adm-tile { background: var(--adm-card); border: 1px solid var(--adm-line); border-radius: 10px; overflow: hidden; padding: 0; text-align: left; color: var(--adm-text); }
 .adm-tile:hover { border-color: var(--color-gold); }
@@ -193,7 +193,7 @@ s.adm-sub { display: block; }
 .adm-tile-body { padding: 12px 14px; display: flex; flex-direction: column; gap: 4px; align-items: flex-start; }
 .adm-tile-body small { color: var(--adm-muted); font-size: 11.5px; }
 
-/* ---- slides ---- */
+/* Slides */
 .adm-slides { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 16px; }
 .adm-slide { background: var(--adm-card); border: 1px solid var(--adm-line); border-radius: 10px; overflow: hidden; }
 .adm-slide.is-muted .adm-slide-img { filter: grayscale(1) opacity(.6); }
@@ -205,19 +205,19 @@ s.adm-sub { display: block; }
 
 .adm-save-bar { position: sticky; bottom: 0; padding: 14px 0; display: flex; justify-content: flex-end; background: linear-gradient(transparent, var(--adm-bg) 40%); }
 
-/* ---- toast ---- */
+/* Toast */
 .adm-toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); z-index: 900; padding: 12px 20px; border-radius: 8px; font-weight: 700; font-size: 13.5px; box-shadow: 0 10px 30px rgba(0,0,0,.2); animation: admFade .2s ease; }
 .adm-toast-ok { background: var(--color-ink); color: var(--color-gold-pale); }
 .adm-toast-err { background: #B3261E; color: #fff; }
 
-/* ---- full page messages ---- */
+/* Full page messages */
 .adm-message-page { min-height: 100vh; background: var(--color-ink); color: var(--color-shell); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; padding: 24px; text-align: center; }
 .adm-message-page img { width: 170px; }
 .adm-message-page h1 { color: var(--color-gold); font-size: 28px; }
 .adm-message-page > div { display: flex; flex-direction: column; gap: 10px; align-items: center; opacity: .9; }
 .adm-message-page code { color: var(--color-gold-pale); }
 
-/* ---- responsive ---- */
+/* Responsive */
 @media (max-width: 900px) {
   .adm { grid-template-columns: 1fr; }
   .adm-side { position: fixed; left: 0; top: 0; bottom: 0; width: 260px; z-index: 400; transform: translateX(-100%); transition: transform .2s ease; }

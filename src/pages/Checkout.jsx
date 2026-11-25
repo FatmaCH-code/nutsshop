@@ -30,7 +30,7 @@ export default function Checkout() {
     e.preventDefault()
     setError('')
     if (!supabaseConfigured) {
-      setError('Online ordering is not connected yet.')
+      setError('Online ordering is temporarily unavailable. Please call the store.')
       return
     }
     setSending(true)
@@ -43,7 +43,7 @@ export default function Checkout() {
     }
     setOrderId(data)
     clearCart()
-    refresh() // stock may have changed
+    refresh()
   }
 
   if (orderId) {

@@ -1,10 +1,7 @@
--- =====================================================================
---  GOLDEN NUTS HOUSE — Supabase setup
---  Paste this whole file in Supabase → SQL Editor → New query → Run.
---  Safe to re-run (uses IF NOT EXISTS / OR REPLACE / ON CONFLICT).
--- =====================================================================
+-- Golden Nuts House - database schema
+-- Run in Supabase > SQL Editor. Safe to run more than once.
 
--- ---------- 1. PROFILES (one row per user, holds the role) ----------
+-- Profiles (one row per user, holds the role)
 create table if not exists public.profiles (
   id          uuid primary key references auth.users(id) on delete cascade,
   email       text,
@@ -13,7 +10,7 @@ create table if not exists public.profiles (
   created_at  timestamptz not null default now()
 );
 
--- auto-create a profile when someone signs up
+-- Create a profile on sign up
 create or replace function public.handle_new_user()
 returns trigger language plpgsql security definer set search_path = public as $$
 begin
@@ -28,13 +25,13 @@ create trigger on_auth_user_created
   after insert on auth.users
   for each row execute function public.handle_new_user();
 
--- helper used by every policy below
+-- True for admin and staff accounts
 create or replace function public.is_admin()
 returns boolean language sql stable security definer set search_path = public as $$
   select exists (select 1 from public.profiles where id = auth.uid() and role in ('admin','staff'));
 $$;
 
--- ---------- 2. CATEGORIES ----------
+-- Categories
 create table if not exists public.categories (
   slug          text primary key,
   name          text not null,
@@ -43,24 +40,24 @@ create table if not exists public.categories (
   sort_order    int not null default 0
 );
 
--- ---------- 3. PRODUCTS ----------
+-- Products
 create table if not exists public.products (
   id                bigint generated always as identity primary key,
   name              text not null,
   slug              text not null unique,
   description       text default '',
   base_price        numeric(10,2) not null check (base_price >= 0),
-  compare_at_price  numeric(10,2),               -- old price, shown crossed out (sale)
-  has_weight        boolean not null default false, -- true = One Pound / Half Pound selector
+  compare_at_price  numeric(10,2),               -- previous price, shown as a sale
+  has_weight        boolean not null default false, -- sold by the pound
   category          text[] not null default '{}',
   image_url         text,
-  stock             int,                          -- null = unlimited
+  stock             int,                          -- null means unlimited
   is_active         boolean not null default true,
   sort_order        int not null default 0,
   created_at        timestamptz not null default now()
 );
 
--- ---------- 4. HERO SLIDES (home page carousel) ----------
+-- Hero slides (home page carousel)
 create table if not exists public.hero_slides (
   id               bigint generated always as identity primary key,
   title            text not null,
@@ -74,14 +71,14 @@ create table if not exists public.hero_slides (
   is_active        boolean not null default true
 );
 
--- ---------- 5. SITE SETTINGS (texts, contact info, banners…) ----------
+-- Site settings (texts, contact info, banners…)
 create table if not exists public.site_settings (
   id    int primary key default 1 check (id = 1),
   data  jsonb not null default '{}'::jsonb
 );
 insert into public.site_settings (id, data) values (1, '{}'::jsonb) on conflict (id) do nothing;
 
--- ---------- 6. ORDERS ----------
+-- Orders
 create table if not exists public.orders (
   id               bigint generated always as identity primary key,
   created_at       timestamptz not null default now(),
@@ -99,8 +96,7 @@ create table if not exists public.orders (
   admin_note       text default ''
 );
 
--- Customers place orders ONLY through this function: prices are read from
--- the products table, so nobody can change a price from the browser.
+-- Orders are created here so prices always come from the products table
 create or replace function public.place_order(customer jsonb, cart jsonb)
 returns bigint language plpgsql security definer set search_path = public as $$
 declare
@@ -145,7 +141,7 @@ end $$;
 
 grant execute on function public.place_order(jsonb, jsonb) to anon, authenticated;
 
--- ---------- 7. ROW LEVEL SECURITY ----------
+-- Row level security
 alter table public.profiles      enable row level security;
 alter table public.categories    enable row level security;
 alter table public.products      enable row level security;
@@ -153,13 +149,13 @@ alter table public.hero_slides   enable row level security;
 alter table public.site_settings enable row level security;
 alter table public.orders        enable row level security;
 
--- profiles: you see yourself, admins see & edit everyone
+-- Profiles
 drop policy if exists "profiles self read"   on public.profiles;
 drop policy if exists "profiles admin all"   on public.profiles;
 create policy "profiles self read" on public.profiles for select using (id = auth.uid());
 create policy "profiles admin all" on public.profiles for all using (public.is_admin()) with check (public.is_admin());
 
--- public catalogue: everyone reads, only admins write
+-- Catalogue: public read, admin write
 drop policy if exists "categories read"  on public.categories;
 drop policy if exists "categories admin" on public.categories;
 create policy "categories read"  on public.categories for select using (true);
@@ -180,13 +176,13 @@ drop policy if exists "settings admin" on public.site_settings;
 create policy "settings read"  on public.site_settings for select using (true);
 create policy "settings admin" on public.site_settings for all using (public.is_admin()) with check (public.is_admin());
 
--- orders: customers see their own, admins see & manage all (inserts go through place_order)
+-- Orders: customers read their own, admin manages all
 drop policy if exists "orders own read" on public.orders;
 drop policy if exists "orders admin"    on public.orders;
 create policy "orders own read" on public.orders for select using (user_id = auth.uid());
 create policy "orders admin"    on public.orders for all using (public.is_admin()) with check (public.is_admin());
 
--- ---------- 8. IMAGE STORAGE (product / banner photos) ----------
+-- Image storage (product / banner photos)
 insert into storage.buckets (id, name, public) values ('images', 'images', true)
 on conflict (id) do nothing;
 
@@ -199,8 +195,10 @@ create policy "images admin write"  on storage.objects for insert with check (bu
 create policy "images admin update" on storage.objects for update using (bucket_id = 'images' and public.is_admin());
 create policy "images admin delete" on storage.objects for delete using (bucket_id = 'images' and public.is_admin());
 
--- =====================================================================
---  AFTER RUNNING: sign up on the site with the client's email, then run
---    update public.profiles set role = 'admin' where email = 'CLIENT@EMAIL.COM';
---  Then run seed.sql once if you want the starter products / slides.
--- =====================================================================
+-- Table access for the API (rules above still apply)
+grant usage on schema public to anon, authenticated;
+grant all on all tables in schema public to anon, authenticated;
+grant all on all sequences in schema public to anon, authenticated;
+grant execute on all functions in schema public to anon, authenticated;
+alter default privileges in schema public grant all on tables to anon, authenticated;
+alter default privileges in schema public grant all on sequences to anon, authenticated;

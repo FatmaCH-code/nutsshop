@@ -2,7 +2,6 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { supabase } from '../../lib/supabaseClient.js'
 
-// Load a whole table, with a reload() function.
 export function useTable(table, { order = 'created_at', ascending = false, select = '*' } = {}) {
   const [rows, setRows] = useState([])
   const [loading, setLoading] = useState(true)
@@ -20,7 +19,6 @@ export function useTable(table, { order = 'created_at', ascending = false, selec
   return { rows, setRows, loading, error, reload }
 }
 
-// Small toast message at the bottom of the screen
 export function useToast() {
   const [toast, setToast] = useState(null)
   const timer = useRef()
@@ -33,7 +31,7 @@ export function useToast() {
   return [show, node]
 }
 
-// Upload a file to the public "images" bucket and return its URL
+// Uploads to the "images" storage bucket
 export async function uploadImage(file, folder = 'products') {
   const ext = file.name.split('.').pop().toLowerCase()
   const path = `${folder}/${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`
@@ -42,7 +40,6 @@ export async function uploadImage(file, folder = 'products') {
   return supabase.storage.from('images').getPublicUrl(path).data.publicUrl
 }
 
-// Image field: paste a URL or upload from the computer, with preview
 export function ImageInput({ label = 'Image', value, onChange, folder, wide = false }) {
   const [busy, setBusy] = useState(false)
   const [err, setErr] = useState('')

@@ -27,7 +27,7 @@ export default function ProductDetail() {
     return (
       <div className="container" style={{ padding: '100px 24px', textAlign: 'center' }}>
         <h1 style={{ fontSize: 28, marginBottom: 12 }}>Product not found</h1>
-        <p style={{ opacity: 0.7, marginBottom: 24 }}>We couldn't find that item — it may have been moved or renamed.</p>
+        <p style={{ opacity: 0.7, marginBottom: 24 }}>We couldn't find that item. It may have been moved or renamed.</p>
         <Link to="/" className="btn btn-outline-dark">Back to Home</Link>
       </div>
     )

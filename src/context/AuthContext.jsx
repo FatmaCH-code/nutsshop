@@ -36,7 +36,7 @@ export function AuthProvider({ children }) {
   }
 
   async function signUp(email, password, fullName) {
-    if (!supabaseConfigured) return { error: { message: 'Supabase is not configured yet.' } }
+    if (!supabaseConfigured) return { error: { message: 'Service temporarily unavailable. Please try again later.' } }
     const { data, error } = await supabase.auth.signUp({
       email,
       password,
@@ -46,7 +46,7 @@ export function AuthProvider({ children }) {
   }
 
   async function signIn(email, password) {
-    if (!supabaseConfigured) return { error: { message: 'Supabase is not configured yet.' } }
+    if (!supabaseConfigured) return { error: { message: 'Service temporarily unavailable. Please try again later.' } }
     const { data, error } = await supabase.auth.signInWithPassword({ email, password })
     return { data, error }
   }

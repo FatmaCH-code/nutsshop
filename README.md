@@ -1,64 +1,58 @@
-# Golden Nuts House — Website + Admin Panel
+# Golden Nuts House
 
-React (Vite) + Supabase. Shop: home, collections, product pages, cart, checkout (pickup / local delivery), customer account.
-Admin panel at **/admin**: dashboard, orders, products, categories, home slides, site settings, users & roles.
+Online store for Golden Nuts House, Columbus, OH.
 
-## 1. Supabase (once)
+Built with React (Vite) and Supabase, hosted on Vercel.
 
-1. Create a new Supabase project (free plan allows **2 active projects per account**).
-2. **SQL Editor → New query** → paste `supabase/schema.sql` → **Run**.
-3. New query → paste `supabase/seed.sql` → **Run** (starter products, slides, categories — optional).
-4. **Authentication → Sign In / Providers → Email**: for quick testing you can turn off "Confirm email".
-5. **Project Settings → API**: copy the *Project URL* and the *anon public* key.
+## Features
 
-## 2. Run locally
+**Store**
+- Home page with banner slides, featured products and categories
+- Collection and product pages (sold per piece or by weight)
+- Cart and checkout (store pickup or local delivery)
+- Customer accounts with order history
 
+**Admin panel** (`/admin`)
+- Dashboard: new orders, sales, low stock
+- Orders: view details and update status
+- Products: add, edit, hide, delete, upload photos, manage stock and sale prices
+- Categories and home page slides
+- Site settings: announcement bar, contact info, texts and images
+- Users: give staff or admin access
+
+## Setup
+
+### Database (Supabase)
+1. Create a Supabase project.
+2. In SQL Editor, run `supabase/schema.sql`, then `supabase/seed.sql`.
+3. Copy the project URL and publishable key from Project Settings > API Keys.
+
+### Local
 ```bash
-cp .env.example .env      # then paste the 2 keys in .env
+cp .env.example .env    # add the URL and key
 npm install
 npm run dev
 ```
 
-## 3. Make the client an admin
+### Hosting (Vercel)
+Add these environment variables in Vercel, then redeploy:
 
-1. On the site, go to **/signup** and create an account with the client's email.
-2. In Supabase SQL Editor run:
-   ```sql
-   update public.profiles set role = 'admin' where email = 'CLIENT@EMAIL.COM';
-   ```
-3. Log in → an **ADMIN** button appears in the header → **/admin**.
-   From then on the client can promote employees himself in *Admin → Users & Roles* (`staff` = products + orders, `admin` = everything).
-
-## 4. Deploy on Vercel
-
-- Push to GitHub, import in Vercel (framework: Vite).
-- **Settings → Environment Variables**: add `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY`, then **Redeploy**.
-- `vercel.json` already makes links like `/admin` work on refresh.
-- **Settings → Domains**: add the client's domain (e.g. goldennutshouse.com) and set the DNS records Vercel shows.
-
-## What the admin can change
-
-| Section | What |
+| Name | Value |
 |---|---|
-| Orders | list, filter by status, change status (new → confirmed → preparing → ready → completed / cancelled), private notes, print, delete |
-| Products | add / edit / duplicate / delete, upload photos, price, old price (SALE badge), stock (0 = sold out), sold by weight, categories, hide/show, order |
-| Categories | names, tile images, show on home page |
-| Home Slides | banner images, titles, buttons, order, hide/show |
-| Site Settings | announcement bar, address, phone, email, hours, about/gift sections, footer, social links, checkout message |
+| `VITE_SUPABASE_URL` | Supabase project URL |
+| `VITE_SUPABASE_ANON_KEY` | Supabase publishable key |
 
-Home page rows: put a product in **Best Sellers**, **Hot Items** or **Limited-Time Discounts** to show it on the home page.
-
-Prices are always taken from the database when an order is placed (`place_order` function), so they can't be changed from the browser.
-
-## Files
-
+### Admin access
+Create an account on the site, then run once in SQL Editor:
+```sql
+update public.profiles set role = 'admin' where email = 'owner@example.com';
 ```
-public/            gnh-logo.png, gnh-mark.png, favicon.png (logo cut from the bag mock-up)
-supabase/          schema.sql (tables + security + storage), seed.sql (starter content)
-src/context/       Auth, Cart, SiteData (loads products/slides/settings from Supabase)
-src/pages/admin/   the admin panel
-src/data/nav.js    header mega-menu links (edit here if categories change)
-```
+After that, more staff can be added from Admin > Users.
 
-> Logo: extracted from the bag photo. For the sharpest result, ask the client for the original PNG/SVG
-> and replace `public/gnh-logo.png` + `public/gnh-mark.png` (same names).
+## Roles
+
+| Role | Access |
+|---|---|
+| customer | Shop and view own orders |
+| staff | Admin panel (products, orders, content) |
+| admin | Everything, including user roles |

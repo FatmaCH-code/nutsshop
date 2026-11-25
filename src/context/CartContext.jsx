@@ -19,7 +19,7 @@ export function CartProvider({ children }) {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(items))
     } catch {
-      // storage unavailable — cart just won't persist across reloads
+      // ignore
     }
   }, [items])
 

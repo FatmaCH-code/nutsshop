@@ -1,6 +1,5 @@
 import { useSiteData } from '../context/SiteDataContext.jsx'
 
-// Thin helpers on top of SiteDataContext (live Supabase data with local fallback).
 export function useProducts() {
   const { products, loading, isLive } = useSiteData()
   return { products, loading, isLive }

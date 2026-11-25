@@ -69,7 +69,7 @@ export default function Slides() {
               </div>
             </div>
           ))}
-          {rows.length === 0 && <p className="adm-empty">No slides yet — the home page will start directly with the products.</p>}
+          {rows.length === 0 && <p className="adm-empty">No slides yet. The home page will start directly with the products.</p>}
         </div>
       )}
 

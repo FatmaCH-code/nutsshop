@@ -42,7 +42,7 @@ export default function Signup() {
 
         {!supabaseConfigured && (
           <p className="auth-warning">
-            Supabase isn't connected yet — add the keys in <code>.env</code> (see README).
+            Accounts are temporarily unavailable. Please try again later.
           </p>
         )}
 

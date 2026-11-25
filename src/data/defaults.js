@@ -1,5 +1,4 @@
-// Default site content. Everything here can be overridden from
-// Admin → Settings (saved in Supabase `site_settings`).
+// Default texts, overridden by Admin > Site Settings
 export const DEFAULT_SETTINGS = {
   storeName: 'Golden Nuts House',
   tagline: 'Nuts • Coffee • Gifts • Luxury',
@@ -11,7 +10,7 @@ export const DEFAULT_SETTINGS = {
   facebook: 'https://www.facebook.com/goldennutshouse',
   instagram: 'https://www.instagram.com/goldennutshouse',
   footerText:
-    'Good nuts. Great coffee. Lasting memories. Premium nuts, coffee, sweets and gifts — roasted fresh and packed with care in Columbus, Ohio.',
+    'Good nuts. Great coffee. Lasting memories. Premium nuts, coffee, sweets and gifts, roasted fresh and packed with care in Columbus, Ohio.',
   aboutTitle: 'Who is Golden Nuts House?',
   aboutText:
     'We roast premium nuts in small batches every day, and pair them with rich coffee, hand-picked dried fruit, sweets and gift trays. Every product reflects one promise: premium quality, every time.',

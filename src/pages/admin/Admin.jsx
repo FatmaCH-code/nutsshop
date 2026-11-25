@@ -38,8 +38,8 @@ export default function Admin() {
 
   if (!supabaseConfigured) {
     return (
-      <Message title="Connect Supabase first">
-        <p>Add <code>VITE_SUPABASE_URL</code> and <code>VITE_SUPABASE_ANON_KEY</code> (see README), then reload.</p>
+      <Message title="Admin unavailable">
+        <p>The store database is not connected.</p>
         <Link to="/" className="adm-btn adm-btn-gold">Back to the shop</Link>
       </Message>
     )

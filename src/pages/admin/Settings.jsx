@@ -14,8 +14,8 @@ const GROUPS = [
   ] },
   { title: 'Home page', fields: [
     ['dealsTitle', 'Title of the “Discounts” row'], ['bestTitle', 'Title of the “Best sellers” row'], ['hotTitle', 'Title of the “Hot items” row'],
-    ['aboutTitle', 'About section — title'], ['aboutText', 'About section — text', null, 'textarea'], ['aboutImage', 'About section — image', null, 'image'],
-    ['giftTitle', 'Gift banner — title'], ['giftText', 'Gift banner — text'], ['giftImage', 'Gift banner — image', null, 'image'],
+    ['aboutTitle', 'About section: title'], ['aboutText', 'About section: text', null, 'textarea'], ['aboutImage', 'About section: image', null, 'image'],
+    ['giftTitle', 'Gift banner: title'], ['giftText', 'Gift banner: text'], ['giftImage', 'Gift banner: image', null, 'image'],
     ['showAppBanner', 'Show the “Download our app” banner', null, 'toggle'],
   ] },
   { title: 'Footer & social', fields: [
@@ -46,7 +46,7 @@ export default function Settings() {
     const { error } = await supabase.from('site_settings').upsert({ id: 1, data })
     setSaving(false)
     if (error) return toast(error.message, 'err')
-    toast('Settings saved — the website is updated ✓'); refresh()
+    toast('Settings saved ✓'); refresh()
   }
 
   if (!data) return <p className="adm-loading">Loading…</p>

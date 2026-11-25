@@ -43,7 +43,7 @@ export default function Cart() {
           <span>Subtotal</span>
           <span>${subtotal.toFixed(2)}</span>
         </div>
-        <p className="cart-summary-note">Pickup in store or local delivery — choose at checkout.</p>
+        <p className="cart-summary-note">Pickup in store or local delivery, chosen at checkout.</p>
         <Link to="/checkout" className="btn btn-gold cart-checkout-btn">Checkout</Link>
         <button className="cart-clear-link" onClick={clearCart}>Clear cart</button>
       </div>

@@ -1,12 +1,12 @@
 :root {
-  /* ---- Brand tokens: NUTS (gold & black) ---- */
-  --color-ink: #14110F;        /* near-black, warm not blue-black */
+  /* Brand colors */
+  --color-ink: #14110F;
   --color-ink-soft: #2A241E;
-  --color-shell: #FBF7EF;      /* warm parchment background, not stark white */
+  --color-shell: #FBF7EF;
   --color-shell-dim: #F1E9D8;
-  --color-gold: #C89B3C;       /* primary gold accent */
-  --color-gold-deep: #8C6D24;  /* pressed/hover gold */
-  --color-gold-pale: #E9D9AC;  /* faint gold tint for surfaces */
+  --color-gold: #C89B3C;
+  --color-gold-deep: #8C6D24;
+  --color-gold-pale: #E9D9AC;
   --color-line: rgba(20, 17, 15, 0.12);
   --color-line-on-dark: rgba(232, 217, 172, 0.22);
 
@@ -14,7 +14,7 @@
   --font-body: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
 
   --container: 1240px;
-  --radius: 2px; /* almost square, shell/tray edge, not bubbly SaaS rounding */
+  --radius: 2px;
 }
 
 * { box-sizing: border-box; }
@@ -88,7 +88,7 @@ p { margin: 0; }
   * { animation: none !important; transition: none !important; }
 }
 
-/* ---- shared product badges / prices ---- */
+/* Product badges and prices */
 .price-tag { display: inline-flex; gap: 8px; align-items: baseline; }
 .price-old { opacity: 0.5; font-weight: 500; font-size: 0.9em; }
 .product-card-img, .collection-card-img { position: relative; }

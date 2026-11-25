@@ -35,7 +35,7 @@ function normalizeSlide(row) {
   }
 }
 
-// Offline fallback (used until Supabase is connected / seeded)
+// Used while loading or if the database is empty
 const tileBySlug = Object.fromEntries(categoryTiles.map((t) => [t.href.split('/').pop(), t.image]))
 const FALLBACK = {
   products: localProducts.map((p) => ({ ...p, slug: p.href.split('/').pop(), description: '', compareAtPrice: null, stock: null })),

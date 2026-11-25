@@ -19,7 +19,7 @@ export default function Products() {
 
   const [search, setSearch] = useState('')
   const [catFilter, setCatFilter] = useState('')
-  const [editing, setEditing] = useState(null) // product object or EMPTY
+  const [editing, setEditing] = useState(null)
   const [saving, setSaving] = useState(false)
   const [slugTouched, setSlugTouched] = useState(false)
 
@@ -163,7 +163,7 @@ export default function Products() {
               <Field label={editing.has_weight ? 'Price for 1 lb ($)' : 'Price ($)'} hint={editing.has_weight ? `½ lb = ${money((Number(editing.base_price) || 0) * 0.6)}` : null}>
                 <input type="number" step="0.01" min="0" value={editing.base_price} onChange={(e) => set('base_price', e.target.value)} required />
               </Field>
-              <Field label="Old price ($) — optional" hint="Shows a SALE badge with the old price crossed out">
+              <Field label="Old price ($), optional" hint="Shows a SALE badge with the old price crossed out">
                 <input type="number" step="0.01" min="0" value={editing.compare_at_price} onChange={(e) => set('compare_at_price', e.target.value)} />
               </Field>
               <Field label="Stock" hint="Leave empty = unlimited. 0 = sold out.">

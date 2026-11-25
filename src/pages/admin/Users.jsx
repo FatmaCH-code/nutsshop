@@ -3,9 +3,9 @@ import { useAuth } from '../../context/AuthContext.jsx'
 import { useTable, useToast, PageHead } from './shared.jsx'
 
 const ROLES = [
-  ['customer', 'Customer — normal shopper'],
-  ['staff', 'Staff — can manage products & orders'],
-  ['admin', 'Admin — everything, incl. roles'],
+  ['customer', 'Customer'],
+  ['staff', 'Staff (products & orders)'],
+  ['admin', 'Admin (full access)'],
 ]
 
 export default function Users() {
