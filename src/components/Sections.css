@@ -1,0 +1,80 @@
+/* About */
+.about-banner { padding: 80px 0; background: var(--color-shell-dim); }
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+.about-copy h2 { font-size: 32px; margin: 10px 0 18px; font-weight: 600; }
+.about-copy p { font-size: 15px; line-height: 1.7; color: var(--color-ink-soft); margin-bottom: 26px; max-width: 480px; }
+.about-image {
+  aspect-ratio: 4 / 3;
+  background-size: cover;
+  background-position: center;
+  border: 1px solid var(--color-line);
+}
+
+/* Gift banner */
+.gift-banner {
+  position: relative;
+  min-height: 380px;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+}
+.gift-banner-overlay { position: absolute; inset: 0; background: rgba(20,17,15,0.55); }
+.gift-banner-content { position: relative; z-index: 2; color: var(--color-shell); max-width: 480px; }
+.gift-banner-content h2 { font-size: 30px; font-weight: 600; margin: 8px 0 10px; }
+.gift-banner-content p { margin-bottom: 24px; opacity: 0.9; }
+
+/* Category grid */
+.category-grid-section { padding: 70px 24px; }
+.category-grid-title { font-size: 26px; font-weight: 600; margin-bottom: 30px; text-align: center; }
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+.category-tile { position: relative; display: block; aspect-ratio: 1/1; overflow: hidden; }
+.category-tile-img {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center;
+  transition: transform 0.4s ease;
+}
+.category-tile:hover .category-tile-img { transform: scale(1.06); }
+.category-tile::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(20,17,15,0) 40%, rgba(20,17,15,0.75) 100%);
+}
+.category-tile span {
+  position: absolute;
+  bottom: 16px; left: 16px;
+  z-index: 2;
+  color: var(--color-shell);
+  font-weight: 700;
+  font-size: 15px;
+}
+
+/* App banner */
+.app-banner {
+  position: relative;
+  min-height: 300px;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+.app-banner-overlay { position: absolute; inset: 0; background: rgba(20,17,15,0.68); }
+.app-banner-content { position: relative; z-index: 2; color: var(--color-shell); margin: 0 auto; }
+.app-banner-content h2 { font-size: 28px; font-weight: 600; margin-bottom: 10px; }
+.app-banner-content p { margin-bottom: 22px; opacity: 0.85; }
+.app-banner-content .hero-ctas { justify-content: center; }
+
+@media (max-width: 900px) {
+  .about-grid { grid-template-columns: 1fr; gap: 30px; }
+  .category-grid { grid-template-columns: repeat(2, 1fr); }
+}
