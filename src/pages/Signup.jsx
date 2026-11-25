@@ -17,9 +17,10 @@ export default function Signup() {
     e.preventDefault()
     setError('')
     setLoading(true)
-    const { error } = await signUp(email, password, fullName)
+    const { data, error } = await signUp(email, password, fullName)
     setLoading(false)
     if (error) setError(error.message)
+    else if (data?.session) navigate('/account')
     else setDone(true)
   }
 
